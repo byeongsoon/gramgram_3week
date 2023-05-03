@@ -6,6 +6,7 @@ import com.ll.gramgram.boundedContext.likeablePerson.entity.LikeablePerson;
 import com.ll.gramgram.boundedContext.likeablePerson.service.LikeablePersonService;
 import com.ll.gramgram.boundedContext.member.entity.Member;
 import com.ll.gramgram.boundedContext.member.service.MemberService;
+import com.ll.gramgram.standard.util.Ut;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -172,7 +174,6 @@ public class LikeablePersonControllerTests {
         ResultActions resultActions = mvc
                 .perform(post("/usr/likeablePerson/modify/2")
                         .with(csrf()) // CSRF 키 생성
-                        .param("username", "abcd")
                         .param("attractiveTypeCode", "3")
                 )
                 .andDo(print());
