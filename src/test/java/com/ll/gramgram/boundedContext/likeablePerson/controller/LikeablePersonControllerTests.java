@@ -168,7 +168,7 @@ public class LikeablePersonControllerTests {
 
     @Test
     @DisplayName("수정 폼 처리")
-    @WithUserDetails("user4")
+    @WithUserDetails("user3")
     void t015() throws Exception {
         // WHEN
         ResultActions resultActions = mvc
