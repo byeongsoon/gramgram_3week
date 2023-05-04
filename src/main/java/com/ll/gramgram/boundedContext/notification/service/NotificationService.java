@@ -22,10 +22,12 @@ public class NotificationService {
     }
 
 
+    @Transactional
     public RsData<Notification> makeLike(final LikeablePerson likeablePerson) {
         return make(likeablePerson, "LIKE", 0, null);
     }
 
+    @Transactional
     public RsData<Notification> makeModifyAttractive(
         final LikeablePerson likeablePerson,
         final int oldAttractiveTypeCode
@@ -53,5 +55,13 @@ public class NotificationService {
         notificationRepository.save(notification);
 
         return RsData.of("S-1", "알림 메세지가 생성되었습니다.", notification);
+    }
+
+    public RsData markAsRead(final List<Notification> notifications) {
+        notifications.stream()
+            .filter(notification -> !notification.isRead())
+            .forEach(Notification::markAsRead);
+
+        return RsData.of("S-1", "읽음 처리 되었습니다.");
     }
 }
